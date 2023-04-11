@@ -9,5 +9,5 @@ dist/
 *.json
 
 
-# Webstorm files
+# PyCharm files
 .idea
