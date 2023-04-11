@@ -1,0 +1,13 @@
+vis-env/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+*.log
+*.csv
+*.json
+
+
+# Webstorm files
+.idea
