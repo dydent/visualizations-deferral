@@ -1,40 +1,42 @@
-# main.py
-import os
 import pandas as pd
-import plotly.express as px
+
 # local imports
 from helpers.load_json_data import load_json_data
 from helpers.create_transaction_plots import create_bar_plot
 from helpers.save_visualizations import save_visualization_figure
 from helpers.get_data_files_helpers import get_all_json_files
 
+# ---------------------------------------------------------------------------------
+# VISUALIZATION SCRIPT FOR V1ReferralMultilevelRewardsUpgradable EVALUATION DATA
+# ---------------------------------------------------------------------------------
+
+
 # PATH CONFIGURATION
-evaluation_path = '../logs/evaluations/'
+# TODO fix this
+evaluation_path = '../../logs/evaluations/'
 hardhat_path = 'Hardhat-Local_31337/'
 
 # CONTRACT SPECIFIC PATH
 contract_type_path = 'referral-payment-multilevel-rewards/'
-json_file_name = 'V1ReferralMultilevelRewardsUpgradable-contract-evaluation.json'
-contract_name = 'V1ReferralMultilevelRewardsUpgradable'
-
+json_file_name = 'V2ReferralMultilevelRewardsUpgradable-contract-evaluation.json'
+contract_name = 'V2ReferralMultilevelRewardsUpgradable'
 # create the final file path
 file_path = evaluation_path + contract_type_path + hardhat_path + json_file_name
 
-all_files = get_all_json_files(evaluation_path)
-print(all_files)
-
+# try to load and visualize data from generated json evaluation files
 try:
-    print("\nExecuting Visualization Script for {}... \n...".format(contract_name)),
+    print("\nExecuting Visualization Script for {}... \n...".format(contract_name))
+
     # get all evaluation files
     all_evaluation_file_paths = get_all_json_files(evaluation_path)
+
     # get evaluation data form json
     evaluation_data: list = load_json_data(file_path)
     number_of_evaluation_runs = len(evaluation_data)
+
     print("... number of evaluation runs for {} = {}".format(json_file_name, str(number_of_evaluation_runs)))
 
-    # get data frame of evaluation objects
-    df_evaluation_data = pd.DataFrame(evaluation_data)
-
+    # empty lists for tx data dataframes and number of users per evaluation run
     transaction_data_df_list = []
     number_of_users_in_evaluation_runs_list = []
 
@@ -44,6 +46,12 @@ try:
         # generate transaction data frames out of the evaluation data
         number_of_users_in_evaluation_runs_list.append(item['numberOfUsers'])
         transaction_data_df_list.append(pd.DataFrame(item['data']))
+        # get data frame of evaluation data
+        evaluation_data_df = pd.DataFrame(item)
+        # create visualizations for evaluation data
+        evaluation_data_column_values = evaluation_data_df.columns
+        evaluation_data_x_axis_values = ['txIndex', 'userIteration', 'userTxIteration']
+        evaluation_data_y_axis_values = list(set(evaluation_data_column_values) - set(evaluation_data_x_axis_values))
         # TODO: create evaluation visualizations
 
     # create plots for tx data
@@ -54,11 +62,11 @@ try:
             "... generating transaction data visualizations for {} evaluation run with {} users".format(str(index + 1),
                                                                                                         number_of_users))
         # get visualization values
-        column_values = extracted_tx_data_df.columns
-        x_axis_values = ['txIndex', 'userIteration', 'userTxIteration']
-        y_axis_values = list(set(column_values) - set(x_axis_values))
-        for x_axis_value in x_axis_values:
-            for y_axis_value in y_axis_values:
+        tx_data_column_values = extracted_tx_data_df.columns
+        tx_data_x_axis_values = ['txIndex', 'userIteration', 'userTxIteration']
+        tx_data_y_axis_values = list(set(tx_data_column_values) - set(tx_data_x_axis_values))
+        for x_axis_value in tx_data_x_axis_values:
+            for y_axis_value in tx_data_y_axis_values:
                 plot_title = "{} per {} for {}".format(y_axis_value, x_axis_value, contract_name)
                 x_axis_title = x_axis_value
                 y_axis_title = y_axis_value
