@@ -18,6 +18,8 @@ evaluation_path = '../../../logs/evaluations/'
 hardhat_path = 'Hardhat-Local_31337/'
 
 # CONTRACT SPECIFIC PATH
+
+#  TODO make this generic and importable or check at least
 contract_type_path = 'referral-payment-transmitter/'
 json_file_name = 'V1ReferralPaymentTransmitter-contract-evaluation.json'
 # create the final file path
