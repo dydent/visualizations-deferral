@@ -11,3 +11,6 @@ dist/
 
 # Webstorm files
 .idea
+
+# ignore generated result files
+/visualization-result-files/
