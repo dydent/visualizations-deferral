@@ -1,3 +1,5 @@
+import sys
+
 import pandas as pd
 # local imports
 from helpers.create_transaction_plots import create_bar_plot, create_scatter_plot
@@ -47,14 +49,19 @@ try:
     # create visualizations for evaluation data
     # metric values that should be visualized
     print(evaluation_data)
-    evaluation_metric_values = list(dict(evaluation_data[0]['metrics']).keys())
-    print(evaluation_metric_values)
+    evaluation_metric_value_keys = list(dict(evaluation_data[0]['metrics']).keys())
+    gas_cost_keys = list(filter(lambda x: "gasCost" in x, evaluation_metric_value_keys))
+    fiat_cost_keys = list(filter(lambda x: "gasCost" in x, evaluation_metric_value_keys))
+    gas_used_keys = list(filter(lambda x: "gasUsed" in x, evaluation_metric_value_keys))
+
+    print(evaluation_metric_value_keys)
     eval_columns = evaluation_data_df.metrics
+
     # metric types that should be visualized
     evaluation_metric_types = ['avg', 'min', 'max', 'median', 'sum']
 
     # create visualizations grouped by metric values
-    for metric_value in evaluation_metric_values:
+    for metric_value in gas_used_keys:
         print(f"... evaluation {metric_value} visualizations")
         file_folder = f'{contract_type_path}{contract_name}/metric-values/{metric_value}/'
         # create and store files per metric and metric type:
@@ -87,12 +94,14 @@ try:
 
     print("\n... generating evaluation metric visualizations")
 
+    # sys.exit()
+
     # create visualizations grouped by metric types
     for metric_type in evaluation_metric_types:
         print(f"... evaluation {metric_type} visualizations")
         file_folder = f'{contract_type_path}{contract_name}/metric-types/{metric_type}/'
         # create and store files per metric and metric type:
-        for metric_value in evaluation_metric_values:
+        for metric_value in evaluation_metric_value_keys:
             metric_type_vis_title = f'{metric_type} {metric_value} per Evaluation Run for {contract_name}'
             # create plot
             bar_plot_evaluation_metric_visualization = create_single_evaluation_metric_type_bar_plot(
@@ -111,7 +120,7 @@ try:
         combined_metric_vis_file_name = f'combined-{metric_type}-metric-values-{contract_name}'
         # create plot
         bar_plot_combined_evaluation_metric_visualization = create_grouped_evaluation_metric_types_bar_plot(
-            evaluation_data=evaluation_data, all_metric_values=evaluation_metric_values, metric_type=metric_type,
+            evaluation_data=evaluation_data, all_metric_values=evaluation_metric_value_keys, metric_type=metric_type,
             plot_title=combined_metric_vis_title)
         # save metric with combined metric type bar plot visualization
         save_visualization_figure(fig=bar_plot_combined_evaluation_metric_visualization,
@@ -144,6 +153,8 @@ try:
         tx_data_column_values = extracted_tx_data_df.columns
         tx_data_x_axis_values = ['txIndex', 'userIteration', 'userTxIteration']
         tx_data_y_axis_values = list(set(tx_data_column_values) - set(tx_data_x_axis_values))
+        tx_data_y_axis_values = list(filter(lambda x: "gasUsed" in x, tx_data_y_axis_values))
+
         # create all visualizations
         for x_axis_value in tx_data_x_axis_values:
             for y_axis_value in tx_data_y_axis_values:
@@ -162,17 +173,17 @@ try:
                 save_visualization_figure(fig=bar_plot_tx_visualization, file_name=result_vis_file_name,
                                           base_folder='tx-visualizations',
                                           file_folder=bar_vis_file_folder)
-                # create scatter plot
-                scatter_plot_tx_visualization = create_scatter_plot(df=extracted_tx_data_df, x_axis=x_axis_value,
-                                                                    y_axis=y_axis_value,
-                                                                    title=plot_title,
-                                                                    x_axis_title=x_axis_title,
-                                                                    y_axis_title=y_axis_title)
-                scatter_vis_file_folder = f'{contract_type_path}{contract_name}/plots-for-{number_of_users}-users/{y_axis_value}/scatter-plots/'
-                # save scatter plot visualization
-                save_visualization_figure(fig=scatter_plot_tx_visualization, file_name=result_vis_file_name,
-                                          base_folder='tx-visualizations',
-                                          file_folder=scatter_vis_file_folder)
+                # # create scatter plot
+                # scatter_plot_tx_visualization = create_scatter_plot(df=extracted_tx_data_df, x_axis=x_axis_value,
+                #                                                     y_axis=y_axis_value,
+                #                                                     title=plot_title,
+                #                                                     x_axis_title=x_axis_title,
+                #                                                     y_axis_title=y_axis_title)
+                # scatter_vis_file_folder = f'{contract_type_path}{contract_name}/plots-for-{number_of_users}-users/{y_axis_value}/scatter-plots/'
+                # # save scatter plot visualization
+                # save_visualization_figure(fig=scatter_plot_tx_visualization, file_name=result_vis_file_name,
+                #                           base_folder='tx-visualizations',
+                #                           file_folder=scatter_vis_file_folder)
 
 except FileNotFoundError:
     print(f"Error: The specified evaluation JSON file '{file_path}' does not exist.")

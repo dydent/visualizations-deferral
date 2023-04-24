@@ -7,7 +7,7 @@ def create_bar_plot(df: pd.DataFrame, x_axis: str, y_axis: str, title: str, x_ax
                     html_output: bool = False):
     # create chart
     if x_axis == 'index' or x_axis == 'txIndex':
-        fig = px.bar(df, y=df[y_axis], color=df[y_axis], hover_data=df.columns)
+        fig = px.bar(df, y=df[y_axis], hover_data=df.columns)
     else:
         fig = px.bar(df, x=df[x_axis], y=df[y_axis], color=df[y_axis], hover_data=df.columns)
 
