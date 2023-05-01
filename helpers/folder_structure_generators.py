@@ -1,6 +1,11 @@
 import os
 
 
+# ---------------------------------------------------------------------------------
+# helper functions to print folder structure of a folder
+# ---------------------------------------------------------------------------------
+
+
 def read_gitignore_files(file_paths):
     # Initialize an empty list to store the folder names to ignore
     gitignore_folders = []
@@ -25,6 +30,9 @@ def print_folder_structure(start_path, ignore_folders=None, folders_only=False, 
     if ignore_folders is None:
         ignore_folders = []
 
+    if depth == 0 and latex:
+        print("\\dirtree{%")
+
     for item in sorted(os.listdir(start_path)):
         if item in ignore_folders:
             continue
@@ -33,19 +41,19 @@ def print_folder_structure(start_path, ignore_folders=None, folders_only=False, 
 
         if os.path.isdir(item_path):
             if latex:
-                print(f"{'  ' * depth}\\item {item}")
-                print(f"{'  ' * depth}\\begin{{enumerate}}")
+                print(f"{'.%d' % (depth + 1)} {item}/.")
             elif markdown:
                 print(f"{'  ' * depth}- {item}/")
             else:
                 print("|  " * depth + "|-- " + item)
             print_folder_structure(item_path, ignore_folders, folders_only, depth + 1, markdown, latex)
-            if latex:
-                print(f"{'  ' * depth}\\end{{enumerate}}")
         elif not folders_only:
             if latex:
-                print(f"{'  ' * depth}\\item {item}")
+                print(f"{'.%d' % (depth + 1)} {item}.")
             elif markdown:
                 print(f"{'  ' * depth}- {item}")
             else:
                 print("|  " * depth + "|-- " + item)
+
+    if depth == 0 and latex:
+        print("}")
