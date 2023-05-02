@@ -70,6 +70,11 @@ for path_value, contracts in evaluation_files_contract_info.items():
             # --> values displayed on y-axis
             transaction_metric_values = [{"value": "gasUsed", "title": "Gas Used"},
                                          {"value": "durationInMs", "title": "Duration in MS"},
+                                         {"value": "polygonMainnetFiatCost", "title": "Costs (USD) on Polygon"},
+                                         {"value": "bscGasCost", "title": "Costs (USD) on Binance"},
+                                         {"value": "arbitrumMainnetGasCost", "title": "Costs (USD) on Arbitrum"},
+                                         {"value": "optimismMainnetFiatCost", "title": "Costs (USD) on Optimism"},
+                                         {"value": "avalancheGasCost", "title": "Costs (USD) on Avalanche"},
                                          {"value": "ethereumFiatCost", "title": "Costs (USD) on Ethereum"}]
             # values that should be used on the x-axis
             x_axis_values = ["TX-ID", "userIteration", "userTxIteration"]
@@ -120,6 +125,6 @@ for path_value, contracts in evaluation_files_contract_info.items():
                                               base_folder=storage_base_folder,
                                               file_folder=file_storage_folder)
 
-        # if the evaluation file could not be loaded --> make sure the evaluation scripts have been executed
+        # if the transaction evaluation file could not be loaded --> make sure the evaluation scripts have been executed
         except FileNotFoundError:
             print(f"Error: The specified evaluation JSON file '{file_path}' does not exist.")
