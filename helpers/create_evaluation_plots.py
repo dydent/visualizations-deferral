@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
 
-from helpers.convert_number import convert_string_to_number
+from helpers.convert_string_to_number import convert_string_to_number
 
 
 def create_single_evaluation_metric_type_bar_plot(evaluation_data: list, metric_value: str, metric_type: str,

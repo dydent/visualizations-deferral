@@ -2,7 +2,7 @@ import sys
 
 import pandas as pd
 # local imports
-from helpers.convert_to_numbers import convert_to_numbers
+from helpers.convert_list_to_numbers import convert_to_numbers
 from helpers.create_subplot import create_subplot
 from helpers.create_transaction_evaluation_bar_chart import create_transaction_bar_chart
 from helpers.create_transaction_plots import create_bar_plot, create_scatter_plot
