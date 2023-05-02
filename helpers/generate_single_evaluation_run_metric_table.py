@@ -80,15 +80,18 @@ def generate_latex_table_with_human_readable_values_v2(
 
 def generate_latex_table_with_human_readable_values_rounded(
         data, metrics_keys, table_caption: str = "Your Caption", table_label: str = "tab:table_label",
-        round_decimals: int = 3,
+        round_decimals: int = 3, metric_table_caption: str = "Metrics"
 ):
     latex_table = (
+        "%===============================================================================\n"
+        f"% {table_caption}\n"
+        f"% rounded to {round_decimals} decimals\n"
         "%===============================================================================\n"
         "\\begin{table}[]\n"
         "\\centering\n"
         "{\\small\n"
         "\\begin{tabular}{lccccc} \\toprule\n"
-        "Metric & Avg & Min & Max & Median & Sum \\\\ \\midrule\n"
+        f"{{{metric_table_caption}}} & Avg & Min & Max & Median & Sum \\\\ \\midrule\n"
     )
 
     for key in metrics_keys:

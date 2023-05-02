@@ -98,15 +98,18 @@ for path_value, contracts in evaluation_files_contract_info.items():
 
             # create gas costs metrics per evaluation run
             for index, evaluation_run_data in enumerate(evaluation_data):
+                metric_table_label = "Gas Costs (in Wei)"
+
                 nr_of_users = number_of_users_in_evaluation_runs_list[index]
-                gas_cost_table_caption = f"Gas Costs Metrics (in Wei) for Evaluation with {nr_of_users} of {contract_name}"
+                gas_cost_table_caption = f"Evaluation Gas Costs Metrics ({nr_of_users} Users) for {contract_name}"
                 gas_cost_table_label = f"tab:gas_costs_metrics_for_{nr_of_users}_users_for_{contract_name}"
                 gas_cost_table_storage_folder = f"{contract_name}/{storage_path}/gas-cost-metric-tables/{nr_of_users}_users/"
 
-                gas_cost_table = generate_latex_table_with_human_readable_values_v2(evaluation_run_data,
-                                                                                    gas_cost_metric_keys,
-                                                                                    table_caption=gas_cost_table_caption,
-                                                                                    table_label=gas_cost_table_label)
+                gas_cost_table = generate_latex_table_with_human_readable_values_rounded(evaluation_run_data,
+                                                                                         gas_cost_metric_keys,
+                                                                                         table_caption=gas_cost_table_caption,
+                                                                                         table_label=gas_cost_table_label,
+                                                                                         metric_table_caption=metric_table_label)
 
                 save_table(gas_cost_table, file_name=f"gas_cost_table_for_{nr_of_users}_users_{contract_name}",
                            base_folder=contract_type_path,
@@ -118,15 +121,17 @@ for path_value, contracts in evaluation_files_contract_info.items():
 
             # create fiat costs metrics per evaluation run
             for index, evaluation_run_data in enumerate(evaluation_data):
+                metric_table_label = "Fiat Costs (in USD)"
                 nr_of_users = number_of_users_in_evaluation_runs_list[index]
-                fiat_cost_table_caption = f"Costs Metrics (in USD) for Evaluation with {nr_of_users} of {contract_name}"
+                fiat_cost_table_caption = f"Evaluation Fiat Costs Metrics ({nr_of_users} Users) for {contract_name}"
                 fiat_cost_table_label = f"tab:fiat_costs_metrics_for_{nr_of_users}_users_for_{contract_name}"
                 fiat_cost_table_storage_folder = f"{contract_name}/{storage_path}/fiat-cost-metric-tables/{nr_of_users}_users/"
 
                 fiat_cost_table = generate_latex_table_with_human_readable_values_rounded(evaluation_run_data,
                                                                                           fiat_cost_metric_keys,
                                                                                           table_caption=fiat_cost_table_caption,
-                                                                                          table_label=fiat_cost_table_label)
+                                                                                          table_label=fiat_cost_table_label,
+                                                                                          metric_table_caption=metric_table_label)
 
                 save_table(fiat_cost_table, file_name=f"fiat_cost_table_for_{nr_of_users}_users_{contract_name}",
                            base_folder=contract_type_path,
