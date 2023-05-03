@@ -2,6 +2,11 @@ import os
 from helpers.constants.result_path_constants import VISUALIZATION_RESULT_PATH
 
 
+# ---------------------------------------------------------------------------------
+# helper functions to save latex table in txt file
+# ---------------------------------------------------------------------------------
+
+
 def save_table(table_output: str, file_name: str, base_folder: str, file_folder: str = "") -> None:
     # Create the folder if it doesn't exist
     result_folder = f'{VISUALIZATION_RESULT_PATH}/' + base_folder + '/' + file_folder

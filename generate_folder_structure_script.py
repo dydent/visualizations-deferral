@@ -1,5 +1,10 @@
 from helpers.folder_structure_generators import read_gitignore_files, print_folder_structure
 
+# ---------------------------------------------------------------------------------
+# HELPER SCRIPT TO GENERATE FOLDER STRUCTURE OUTPUTS
+# ---------------------------------------------------------------------------------
+
+
 gitignore_paths = ["../gitignore", "./gitignore"]
 git_ignore_file_lists = read_gitignore_files(gitignore_paths)
 

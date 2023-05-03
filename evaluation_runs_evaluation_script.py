@@ -8,7 +8,7 @@ from helpers.evaluation_run_helpers.generate_single_evaluation_run_metric_table 
 from helpers.get_data_files_helpers import load_json_data, get_all_json_files
 
 # ---------------------------------------------------------------------------------
-# ANALYSIS SCRIPT FOR TRANSACTION EVALUATION DATA
+# ANALYSIS SCRIPT FOR EVALUATION RUN DATA
 # ---------------------------------------------------------------------------------
 
 

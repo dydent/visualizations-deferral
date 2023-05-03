@@ -1,3 +1,7 @@
+# ---------------------------------------------------------------------------------
+# helper functions to generate overall latex visualization table
+# ---------------------------------------------------------------------------------
+
 def generate_latex_table(data_array, metric, tabel_caption: str = "Your Caption", table_label: str = "tab:table_label"):
     # Begin LaTeX table
     latex_table = (

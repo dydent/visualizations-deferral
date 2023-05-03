@@ -1,3 +1,8 @@
+# ---------------------------------------------------------------------------------
+# helper functions to convert numbers
+# ---------------------------------------------------------------------------------
+
+
 def human_readable_format(num, latex=False):
     """
     Convert a numeric value to a human-readable format with units (K, M, B, T, Q) and

@@ -1,3 +1,8 @@
+# ---------------------------------------------------------------------------------
+# helper functions to convert string to number
+# ---------------------------------------------------------------------------------
+
+
 def convert_string_to_number(s: str):
     """
     Convert a string to either an int or a float, depending on the input.

@@ -1,42 +1,6 @@
-def generate_latex_table_single_object(data_object, metric_keys):
-    # Begin LaTeX table
-    latex_table = (
-        "\\begin{table}[]\n"
-        "\\centering\n"
-        "{\\small\n"
-        "\\begin{tabular}{lccccc}\n"
-        "\\toprule\n"
-        "Metric & Avg & Min & Max & Median & Sum\\\\\n"
-        "\\midrule\n"
-    )
-
-    # Add data to the table
-    for index, metric in enumerate(metric_keys):
-        avg_value = data_object["metrics"][metric]["avg"]
-        min_value = data_object["metrics"][metric]["min"]
-        max_value = data_object["metrics"][metric]["max"]
-        median_value = data_object["metrics"][metric]["median"]
-        sum_value = data_object["metrics"][metric]["sum"]
-
-        latex_table += (
-            f"{metric} & \\numprint{{{avg_value}}} & \\numprint{{{min_value}}} & "
-            f"\\numprint{{{max_value}}} & \\numprint{{{median_value}}} & \\numprint{{{sum_value}}}\\\\\n"
-        )
-
-        if index < len(metric_keys) - 1:  # Add midrule if not the last row
-            latex_table += "\\midrule\n"
-
-    # End LaTeX table
-    latex_table += (
-        "\\bottomrule\n"
-        "\\end{tabular}\n"
-        "} % Close the \\small command here\n"
-        "\\caption{Your Caption}\n"  # Replace 'Your Caption' with the desired caption
-        "\\label{tab:your_label}\n"  # Replace 'your_label' with the desired label
-        "\\end{table}\n"
-    )
-
-    return latex_table
+# ---------------------------------------------------------------------------------
+# helper functions to generate evaluation run specific latex visualization tables
+# ---------------------------------------------------------------------------------
 
 
 def generate_latex_table_with_human_readable_values_v2(

@@ -4,6 +4,11 @@ from plotly.graph_objs import Figure
 from helpers.constants.result_path_constants import VISUALIZATION_RESULT_PATH
 
 
+# ---------------------------------------------------------------------------------
+# helper functions save figure as png
+# ---------------------------------------------------------------------------------
+
+
 def save_visualization_figure(fig: Figure, file_name: str, base_folder: str, file_folder: str = "") -> None:
     # Create the folder if it doesn't exist
     result_folder = f'{VISUALIZATION_RESULT_PATH}/' + base_folder + '/' + file_folder
