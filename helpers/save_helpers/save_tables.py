@@ -12,10 +12,10 @@ def save_table(table_output: str, file_name: str, base_folder: str, file_folder:
 
     # Check if the target file already exists, and if it does, replace it with the new file
     if os.path.exists(file_path):
-        print(f"File already exists at {file_path}. Overwriting the file.")
+        # print(f"File already exists at {file_path}. Overwriting the file.")
         os.remove(file_path)
 
     with open(file_path, "w") as file:
         file.write(table_output)
 
-    print(f"Table saved to {file_path}")
+    # print(f"Table saved to {file_path}")

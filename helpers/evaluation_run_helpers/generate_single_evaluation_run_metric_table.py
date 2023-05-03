@@ -1,6 +1,3 @@
-from helpers.convert_human_readable_numbers import human_readable_format
-
-
 def generate_latex_table_single_object(data_object, metric_keys):
     # Begin LaTeX table
     latex_table = (

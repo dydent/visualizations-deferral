@@ -1,12 +1,11 @@
 # main.py
-import os
 import pandas as pd
-import plotly.express as px
+
+from helpers.create_transaction_plots import create_bar_plot
+from helpers.get_data_files_helpers import get_all_json_files
 # local imports
 from helpers.load_json_data import load_json_data
-from helpers.create_transaction_plots import create_bar_plot
 from helpers.save_visualizations import save_visualization_figure
-from helpers.get_data_files_helpers import get_all_json_files
 
 # PATH CONFIGURATION
 evaluation_path = '../logs/evaluations/'

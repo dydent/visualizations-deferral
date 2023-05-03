@@ -1,8 +1,6 @@
-import sys
-
 import pandas as pd
 # local imports
-from helpers.create_transaction_plots import create_bar_plot, create_scatter_plot
+from helpers.create_transaction_plots import create_bar_plot
 from helpers.create_evaluation_plots import create_grouped_evaluation_metric_values_bar_plot, \
     create_single_evaluation_metric_type_bar_plot, create_grouped_evaluation_metric_types_bar_plot
 from helpers.save_visualizations import save_visualization_figure
