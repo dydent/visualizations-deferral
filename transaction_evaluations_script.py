@@ -68,10 +68,11 @@ for path_value, contracts in evaluation_files_contract_info.items():
             transaction_metric_values = [{"value": "gasUsed", "title": "Gas Used"},
                                          {"value": "durationInMs", "title": "Duration in MS"},
                                          {"value": "polygonMainnetFiatCost", "title": "Costs (USD) on Polygon"},
-                                         {"value": "bscGasCost", "title": "Costs (USD) on Binance"},
-                                         {"value": "arbitrumMainnetGasCost", "title": "Costs (USD) on Arbitrum"},
+                                         {"value": "bscFiatCost", "title": "Costs (USD) on Binance"},
+                                         {"value": "arbitrumMainnetFiatCost", "title": "Costs (USD) on Arbitrum"},
+                                         {"value": "goerliFiatCost", "title": "Costs (USD) on Goerli"},
                                          {"value": "optimismMainnetFiatCost", "title": "Costs (USD) on Optimism"},
-                                         {"value": "avalancheGasCost", "title": "Costs (USD) on Avalanche"},
+                                         {"value": "avalancheFiatCost", "title": "Costs (USD) on Avalanche"},
                                          {"value": "ethereumFiatCost", "title": "Costs (USD) on Ethereum"}]
             # values that should be used on the x-axis
             x_axis_values = ["TX-ID", "userIteration", "userTxIteration"]

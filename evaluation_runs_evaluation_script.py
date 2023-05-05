@@ -67,6 +67,7 @@ for path_value, contracts in evaluation_files_contract_info.items():
             # create tables for all metrics across evaluation runs
             for metric in all_metrics_keys:
                 table_caption = f"{metric} for Evaluation Runs of {contract_name}"
+                table_caption = table_caption[0].upper() + table_caption[1:]
                 table_label = f"tab:{metric}_evaluation_runs_table_for_{contract_name}"
 
                 table_storage_folder = f"{contract_name}/{storage_path}/overall-metric-tables/"
@@ -113,9 +114,10 @@ for path_value, contracts in evaluation_files_contract_info.items():
 
             # create fiat costs metrics per evaluation run
             for index, evaluation_run_data in enumerate(evaluation_data):
+                decimals = 3
                 metric_table_label = "Fiat Costs (in USD)"
                 nr_of_users = number_of_users_in_evaluation_runs_list[index]
-                fiat_cost_table_caption = f"Evaluation Fiat Costs Metrics ({nr_of_users} Users) for {contract_name}"
+                fiat_cost_table_caption = f"Evaluation Fiat Costs Metrics ({nr_of_users} Users) rounded to {decimals} decimals for {contract_name}"
                 fiat_cost_table_label = f"tab:fiat_costs_metrics_for_{nr_of_users}_users_for_{contract_name}"
                 fiat_cost_table_storage_folder = f"{contract_name}/{storage_path}/fiat-cost-metric-tables/{nr_of_users}_users/"
 
@@ -123,7 +125,8 @@ for path_value, contracts in evaluation_files_contract_info.items():
                                                                                           fiat_cost_metric_keys,
                                                                                           table_caption=fiat_cost_table_caption,
                                                                                           table_label=fiat_cost_table_label,
-                                                                                          metric_table_caption=metric_table_label)
+                                                                                          metric_table_caption=metric_table_label,
+                                                                                          round_decimals=decimals)
 
                 save_table(fiat_cost_table, file_name=f"fiat_cost_table_for_{nr_of_users}_users_{contract_name}",
                            base_folder=contract_type_path,

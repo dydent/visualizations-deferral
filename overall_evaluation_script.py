@@ -84,13 +84,15 @@ for metric_type in metric_types:
     file_name = f"overall_{metric_type}_fiat_cost_table_for_{number_of_users}_users"
     base_folder = "overall/tables"
     rounded_decimal = 3
-    tabel_caption = f"{metric_type} Fiat Costs in USD Rounded to {rounded_decimal} Decimals Across all Contract " \
+    table_caption = f"{metric_type} Fiat Costs in USD Rounded to {rounded_decimal} Decimals Across all Contract " \
                     f"Evaluations with {number_of_users} Users for " \
                     f"All Evaluation Chains"
+    table_caption = table_caption[0].upper() + table_caption[1:]
+
     table_label = f"tab:overall_{metric_type}_fiat_costs_for_{number_of_users}_users"
     overall_metrics_table = generate_overall_latex_table(data_array=all_contracts_third_evaluation_runs,
                                                          metric_keys=fiat_cost_metric_keys,
-                                                         tabel_caption=tabel_caption,
+                                                         tabel_caption=table_caption,
                                                          table_label=table_label, metric_type=metric_type)
     save_table(overall_metrics_table, file_name=file_name,
                base_folder=base_folder,
