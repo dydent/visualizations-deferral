@@ -96,7 +96,7 @@ for contract_name, values in baseline_data.items():
     # HISTORIC GAS COSTS with custom gas used baseline from results USING GAS USED BASELINE VALUES
     # ---------------------------------------------------------------------------------
     gas_costs_figure_title = f"Gas Costs ({historic_metric_type.title()}) in Gwei per Chains per Day Over Time"
-    gas_cost_figure_name = f"historic_{historic_metric_type}_gas_costs_over_time"
+    gas_cost_figure_name = f"{contract_name}_{values['gas_used_metric_name']}_historic_{historic_metric_type}_gas_costs_over_time"
 
     gas_cost_figure = plot_historic_network_data_gas_cost(historic_gas_price_data,
                                                           y_axis_title=f"Gas Costs ({historic_metric_type.title()}) in Gwei",
@@ -107,13 +107,13 @@ for contract_name, values in baseline_data.items():
     save_visualization_figure(fig=gas_cost_figure,
                               file_name=gas_cost_figure_name,
                               base_folder="historical/gas-costs",
-                              file_folder=f"{contract_name}-{values['gas_used_metric_name']}")
+                              file_folder=f"")
 
     # ---------------------------------------------------------------------------------
     # HISTORIC FIAT COSTS with custom gas used baseline from results in USD USING GAS USED BASELINE VALUES
     # ---------------------------------------------------------------------------------
     fiat_costs_figure_title = f"Fiat Costs ({historic_metric_type.title()}) in USD per Chains per Day Over Time"
-    fiat_cost_figure_name = f"historic_{historic_metric_type}_fiat_costs_over_time"
+    fiat_cost_figure_name = f"{contract_name}_{values['gas_used_metric_name']}_historic_{historic_metric_type}_fiat_costs_over_time"
 
     fiat_cost_figure = plot_historic_network_data_fiat_cost(historic_gas_price_data,
                                                             y_axis_title="Costs (USD)",
@@ -124,4 +124,4 @@ for contract_name, values in baseline_data.items():
     save_visualization_figure(fig=fiat_cost_figure,
                               file_name=fiat_cost_figure_name,
                               base_folder="historical/fiat-costs",
-                              file_folder=f"{contract_name}-{values['gas_used_metric_name']}")
+                              file_folder=f"")
