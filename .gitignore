@@ -15,4 +15,5 @@ dist/
 # ignore generated result files
 /visualization-result-files/
 
+# env file
 .env

@@ -5,9 +5,10 @@
 def numprint_formatter(x, rounded_decimal: int = 3, conversion_fn=None):
     # Check if the input is a number (int or float)
     if isinstance(x, (int, float)):
-        # Round the number to 3 decimal places
+        # if necessary convert numbers
         if conversion_fn:
             x = conversion_fn(x)
+        # Round the number to 3 decimal places
         rounded_x = round(x, rounded_decimal)
         # Return the rounded number formatted as a LaTeX \numprint command
         return r'\numprint{%s}' % rounded_x
