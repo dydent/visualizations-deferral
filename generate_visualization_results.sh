@@ -3,3 +3,4 @@
 python evaluation_runs_evaluation_script.py
 python overall_evaluation_script.py
 python transaction_evaluations_script.py
+python historic_price_evaluation_script.py

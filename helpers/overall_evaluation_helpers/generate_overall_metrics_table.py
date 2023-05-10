@@ -2,10 +2,12 @@
 # helper functions to create overall metric tables
 # ---------------------------------------------------------------------------------
 
-def numprint_formatter(x, rounded_decimal: int = 3):
+def numprint_formatter(x, rounded_decimal: int = 3, conversion_fn=None):
     # Check if the input is a number (int or float)
     if isinstance(x, (int, float)):
         # Round the number to 3 decimal places
+        if conversion_fn:
+            x = conversion_fn(x)
         rounded_x = round(x, rounded_decimal)
         # Return the rounded number formatted as a LaTeX \numprint command
         return r'\numprint{%s}' % rounded_x
@@ -13,7 +15,7 @@ def numprint_formatter(x, rounded_decimal: int = 3):
 
 
 def generate_overall_latex_table(data_array, metric_keys, metric_type: str, tabel_caption: str = "Your Caption",
-                                 table_label: str = "tab:table_label", rounded_decimal: int = 3):
+                                 table_label: str = "tab:table_label", rounded_decimal: int = 3, conversion_fn=None):
     # Begin LaTeX table header, setting the columns and top rule
     latex_table = (
             "%===============================================================================\n"
@@ -32,7 +34,8 @@ def generate_overall_latex_table(data_array, metric_keys, metric_type: str, tabe
         contract_name = data["contractName"]
         # Format the metric values with the numprint_formatter function
         formatted_values = [
-            numprint_formatter(float(data["metrics"][key][metric_type]), rounded_decimal=rounded_decimal) for key in
+            numprint_formatter(float(data["metrics"][key][metric_type]), rounded_decimal=rounded_decimal,
+                               conversion_fn=conversion_fn) for key in
             metric_keys]
         # Add a row for the current contract and its metric values to the LaTeX table
         latex_table += f"{contract_name} & " + " & ".join(formatted_values) + "\\\\\n"
