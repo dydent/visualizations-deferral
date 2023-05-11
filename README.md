@@ -1,16 +1,14 @@
 # Deferral-Visualizations
 
-This repository entails the source code and files developed for the visualization and analysis of the evaluation and
-data that is part of the Master's Thesis of Tobias Boner at the
+This GitHub repository entails the source code and files developed for the evaluation and analysis of the Deferral solution which is part of the Master's Thesis of Tobias Boner at the
 University of Zurich in 2022/2023.
 
-The Deferral main repository(addlink) solution represents mulitple smart contracts that can be used to implement and
-operate a decentralized
-referral system on the blockchain.
+The [Deferral](https://github.com/dydent/Deferral) main repository contains all other source files and code concerning the solution of the thesis.
 
+In the following this 
 Therein, this repository contains a Python project that requires a virtual environment to manage its dependencies.
 
-## Getting Started
+## Installation Guidelines and Setup
 
 Follow the instructions below to set up a virtual environment and install the required dependencies.
 
@@ -64,3 +62,6 @@ python main.py
 ```
 
 Replace main.py with the name of the script you want to run.
+
+
+## Results
